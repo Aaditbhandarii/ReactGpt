@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import {AiFillCodepenCircle,AiFillSmile} from "react-icons/ai";
+import BottomSection from './BottomSection';
+import SideBar from './SideBar';
 
 function App() {
   const [value, setValue] = useState('');
@@ -63,19 +65,13 @@ function App() {
 
   return (
     <div className="App">
-      <section className="sidebar">
-        <button onClick={createNewChat}>+ New chat</button>
-        <ul className='history'>
-          {uniqueTitles.map((uniqueTitle, index) => (
-            <li key={index} onClick={() => handleClick(uniqueTitle)}>
-              {uniqueTitle}
-            </li>
-          ))}
-        </ul>
-      </section>
+      <SideBar createNewChat={createNewChat} uniqueTitles={uniqueTitles} handleClick={handleClick}/>
+      
       <section className='main'>
+
         {!currentTitle && <h1>CollegeGPT</h1>}
-        <ul className='feed'>
+
+    <ul className='feed'>
     {currentChat.map((chatMessage, index) => (
       <li key={index} className={`message ${chatMessage.role}`}>
         {chatMessage.role === "user" && <AiFillSmile className="icon" />}
@@ -83,14 +79,8 @@ function App() {
         <p>{chatMessage.content}</p>
       </li>
     ))}
-  </ul>
-        <div className='bottom-section'>
-          <div className='input-container'>
-            <input value={value} onChange={(e) => setValue(e.target.value)} />
-            {/* Use a button for submitting, and attach the handleSubmit function */}
-            <button id='submit' onClick={handleSubmit}>➢</button>
-          </div>
-        </div>
+   </ul>
+      <BottomSection value={value} setValue={setValue} handleSubmit={handleSubmit} />
       </section>
     </div>
   );

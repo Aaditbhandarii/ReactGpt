@@ -14,8 +14,8 @@ body {
 }
 
 .sidebar {
-  background-color: #80d0c7; /* Your chosen color for the sidebar */
-  color: #ffffff; /* White text for contrast */
+  background-color: #80d0c7; 
+  color: #ffffff;
   width: 250px;
   height: 100vh;
   display: flex;
